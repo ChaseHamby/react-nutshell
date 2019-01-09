@@ -9,8 +9,8 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div className='Home'>
-        <div className="card-deck">
+      <div className='Home mx-auto'>
+        <div className="card-deck mt-5">
           <div className="card border-dark" id="messages" onClick={this.changeView}>
             <div className="card-body text-center">
               <h4 className="card-title"><i className="fas fa-comments fa-7x"></i></h4>
