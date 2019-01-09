@@ -33,7 +33,7 @@ class Home extends React.Component {
             </div>
           </div>
         </div>
-        <div className="card-deck">
+        <div className="card-deck mt-5">
           <div className="card border-dark" id='events' onClick={this.changeView}>
             <div className="card-body text-center">
               <h4 className="card-title"><i className="fas fa-calendar-alt fa-7x"></i></h4>
