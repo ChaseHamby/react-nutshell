@@ -8,6 +8,11 @@ import connection from '../helpers/data/connection';
 
 import Auth from '../components/pages/Auth/auth';
 import Home from '../components/pages/Home/Home';
+import Articles from '../components/pages/Articles/articles';
+import Events from '../components/pages/Events/events';
+import Friends from '../components/pages/Friends/friends';
+import Messages from '../components/pages/Messages/messages';
+import Weather from '../components/pages/Weather/weather';
 import MyNavbar from '../components/MyNavbar/myNavbar';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -63,12 +68,19 @@ class App extends React.Component {
         <BrowserRouter>
           <React.Fragment>
             <MyNavbar isAuthed={authed} logoutClickEvent={logoutClickEvent}/>
+            <div className="container">
             <div className="row">
               <Switch>
                 <PrivateRoute path="/" exact component={Home} authed={this.state.authed} />
                 <PrivateRoute path="/home" component={Home} authed={this.state.authed} />
+                <PrivateRoute path="/articles" component={Articles} authed={this.state.authed} />
+                <PrivateRoute path="/events" component={Events} authed={this.state.authed} />
+                <PrivateRoute path="/friends" component={Friends} authed={this.state.authed} />
+                <PrivateRoute path="/messages" component={Messages} authed={this.state.authed} />
+                <PrivateRoute path="/weather" component={Weather} authed={this.state.authed} />
                 <PublicRoute path="/auth" component={Auth} authed={this.state.authed} />
               </Switch>
+            </div>
             </div>
           </React.Fragment>
         </BrowserRouter>
