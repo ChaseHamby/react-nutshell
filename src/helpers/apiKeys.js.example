@@ -8,6 +8,9 @@ const apiKeys = {
     storageBucket: '',
     messagingSenderId: '',
   },
+  weatherbit: {
+    apiKey: '',
+  }
 };
 
 export default apiKeys;
