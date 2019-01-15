@@ -13,33 +13,26 @@ class Article extends React.Component {
         })
         .catch(err => console.error('error with delete single', err));
     };
-
-    if (this.props.uid === myUid) {
-      return (
-      <div className='card'>
-        <div className='card-body'>
-          <h5 className='card-title'>{this.props.title}</h5>
-          <p className='card-text'>{this.props.synopsis}</p>
-          <a href={this.props.url} className='btn btn-primary'>{this.props.url}</a>
+    
+    const showDeleteButton = () => {
+      if (this.props.uid === myUid) {
+        return (
           <div>
-            <button
-            className='btn btn-danger'
-            onClick={deleteEvent}
-            >Delete</button>
+          <button className="btn btn-danger" onClick={deleteEvent}>Delete</button>
+        </div>
+        );
+      }
+    };
+    
+    return (
+          <div className='card'>
+          <div className='card-body'>
+            <h5 className='card-title'>{this.props.title}</h5>
+            <p className='card-text'>{this.props.synopsis}</p>
+            <a href={this.props.url} className='btn btn-primary'>{this.props.url}</a>
+            {showDeleteButton()}
           </div>
         </div>
-      </div>
-      );
-    }
-
-    return (
-      <div className="card">
-        <div className="card-body">
-          <h5 className="card-title">{this.props.title}</h5>
-          <p className="card-text">{this.props.synopsis}</p>
-          <a href={this.props.url} className="btn btn-primary">{this.props.url}</a>
-        </div>
-      </div>
     );
   }
 }
