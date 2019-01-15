@@ -5,7 +5,6 @@ import {
   BrowserRouter, Route, Redirect, Switch,
 } from 'react-router-dom';
 import connection from '../helpers/data/connection';
-
 import Auth from '../components/pages/Auth/auth';
 import Home from '../components/pages/Home/Home';
 import Articles from '../components/pages/Articles/articles';
@@ -17,8 +16,6 @@ import MyNavbar from '../components/MyNavbar/myNavbar';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import authRequests from '../helpers/data/authRequests';
-import smashRequests from '../helpers/data/smashRequests';
-import articleRequests from '../helpers/data/articleRequests';
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
   const routeChecker = props => (authed === false
