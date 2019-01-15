@@ -3,14 +3,14 @@ import 'firebase/auth';
 import smashRequests from '../../../helpers/data/smashRequests';
 import './articles.scss';
 import Article from '../Article/article';
-import authRequests from '../../../helpers/data/authRequests'
+import authRequests from '../../../helpers/data/authRequests';
 
 class Articles extends React.Component {
   state = {
     articles: [],
   }
 
-  componentDidMount() {
+  displayArticles = () => {
     const uid = authRequests.getCurrentUid();
     smashRequests.getArticlesFromMeAndFriends(uid)
       .then((data) => {
@@ -18,13 +18,23 @@ class Articles extends React.Component {
       }).catch(err => console.error('error getting data', err));
   }
 
+  updateArticles = () => {
+    this.displayArticles();
+  }
+
+  componentDidMount() {
+    this.displayArticles();
+  }
+
   render() {
     const articleBuilder = this.state.articles.map((article) => {
       return (<Article
         id={article.id}
+        uid={article.uid}
         title={article.title}
         synopsis={article.synopsis}
         url={article.url}
+        updateArticles={this.updateArticles}
       />);
     });
     return (
