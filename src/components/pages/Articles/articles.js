@@ -4,6 +4,7 @@ import smashRequests from '../../../helpers/data/smashRequests';
 import './articles.scss';
 import Article from '../Article/article';
 import authRequests from '../../../helpers/data/authRequests';
+import ArticleForm from '../ArticleForm/articleForm';
 
 class Articles extends React.Component {
   state = {
@@ -30,6 +31,7 @@ class Articles extends React.Component {
     const articleBuilder = this.state.articles.map((article) => {
       return (<Article
         id={article.id}
+        key={article.id}
         uid={article.uid}
         title={article.title}
         synopsis={article.synopsis}
@@ -38,9 +40,13 @@ class Articles extends React.Component {
       />);
     });
     return (
-      <div className="Articles">
-        <h2>Articles Component</h2>
-        <div>{articleBuilder}</div>
+      <div className="Articles row">
+        <div className="builder">{articleBuilder}</div>
+        <div className="articleForm">
+        <ArticleForm
+        displayArticles={this.displayArticles}
+        />
+        </div>
       </div>
     );
   }
