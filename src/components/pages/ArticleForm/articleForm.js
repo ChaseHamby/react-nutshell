@@ -1,9 +1,14 @@
+
 import React from 'react';
 import articleRequests from '../../../helpers/data/articleRequests';
 import authRequests from '../../../helpers/data/authRequests';
 import './articleForm.scss';
 
 class ArticleForm extends React.Component {
+  state = {
+    articleId: '',
+  }
+
   addArticles = (e) => {
     e.preventDefault();
     const newArticle = {
@@ -12,15 +17,31 @@ class ArticleForm extends React.Component {
       url: document.getElementById('articleUrl').value,
       uid: authRequests.getCurrentUid(),
     };
-    articleRequests.postRequest(newArticle)
-      .then(() => {
-        this.props.displayArticles();
-      }).catch(err => console.error('err posting article', err));
-  };
-  
+    if (this.props.isEditing) {
+      articleRequests.updateArticle(this.props.articleId, newArticle)
+        .then(() => {
+          this.props.displayArticles();
+        }).catch(err => console.error('err posting article', err));
+    } else {
+      articleRequests.postRequest(newArticle)
+        .then(() => {
+          this.props.displayArticles();
+        }).catch(err => console.error('err posting article', err));
+    }
+  }
+
+  formTitle = () => {
+    if (this.state.isEditing) {
+      return 'Edit Article';
+    }
+    return 'Add A New Article';
+  }
+
+
   render() {
     return (
       <form className="form-details">
+      <h4>{this.formTitle()}</h4>
       <div className="form-group">
         <label htmlFor="articleName">Title</label>
         <input type="text" className="form-control" id="articleName" placeholder="Article Title"/>

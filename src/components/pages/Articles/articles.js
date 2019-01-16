@@ -9,6 +9,8 @@ import ArticleForm from '../ArticleForm/articleForm';
 class Articles extends React.Component {
   state = {
     articles: [],
+    isEditing: false,
+    articleId: '',
   }
 
   displayArticles = () => {
@@ -17,6 +19,11 @@ class Articles extends React.Component {
       .then((data) => {
         this.setState({ articles: data });
       }).catch(err => console.error('error getting data', err));
+  }
+
+  editing = (currentId) => {
+    console.log(currentId);
+    this.setState({ isEditing: true, articleId: currentId });
   }
 
   updateArticles = () => {
@@ -37,6 +44,7 @@ class Articles extends React.Component {
         synopsis={article.synopsis}
         url={article.url}
         updateArticles={this.updateArticles}
+        editing={this.editing}
       />);
     });
     return (
@@ -45,6 +53,9 @@ class Articles extends React.Component {
         <div className="articleForm">
         <ArticleForm
         displayArticles={this.displayArticles}
+        editing={this.editing}
+        isEditing={this.state.isEditing}
+        articleId={this.state.articleId}
         />
         </div>
       </div>
