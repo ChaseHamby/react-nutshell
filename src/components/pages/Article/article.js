@@ -20,7 +20,7 @@ class Article extends React.Component {
       document.getElementById('articleName').value = this.props.title;
       document.getElementById('articleSynopsis').value = this.props.synopsis;
       document.getElementById('articleUrl').value = this.props.url;
-    }
+    };
 
     const showEditButton = () => {
       if (this.props.uid === myUid) {

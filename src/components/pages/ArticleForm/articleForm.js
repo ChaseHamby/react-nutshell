@@ -9,6 +9,13 @@ class ArticleForm extends React.Component {
     articleId: '',
   }
 
+  handleSubmit = (e) => {
+    const form = e.target;
+    e.preventDefault();
+    form.reset();
+  }
+
+
   addArticles = (e) => {
     e.preventDefault();
     const newArticle = {
@@ -31,7 +38,7 @@ class ArticleForm extends React.Component {
   }
 
   formTitle = () => {
-    if (this.state.isEditing) {
+    if (this.props.isEditing) {
       return 'Edit Article';
     }
     return 'Add A New Article';

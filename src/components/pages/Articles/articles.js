@@ -22,7 +22,6 @@ class Articles extends React.Component {
   }
 
   editing = (currentId) => {
-    console.log(currentId);
     this.setState({ isEditing: true, articleId: currentId });
   }
 
